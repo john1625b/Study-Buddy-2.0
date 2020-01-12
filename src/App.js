@@ -7,11 +7,12 @@ class App extends React.Component {
         this.state = {
             title: 'Study Buddy',
             course: '',
-            courseLocation: ''
+            courseLocation: '',
+            table: [{course:'calc1', loc:'MC room 101'},{course:'physics 101', loc:'DC room 202'}, {course:'computer science', loc:'MC cafe'}]
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleCourse = this.handleCourse.bind(this)
+        this.handleCourse = this.handleCourse.bind(this);
         this.handleCourseLocation = this.handleCourseLocation.bind(this)
     }
 
@@ -31,14 +32,23 @@ class App extends React.Component {
         console.log(data)
     }
 
+    tableRow = (course, location) => {
+        return (
+            <tr>
+                <td>{course}</td>
+                <td>{location}</td>
+            </tr>)
+    };
+
     render () {
-        const names = ['Jake', 'Jon', 'Thruster'];
+        // const names = ['Jake', 'Jon', 'Thruster'];
         return (
             <div className="App">
                 <h1>
                     {this.state.title}
                 </h1>
-                {names.map(name => <h1>name</h1>)}
+                {this.state.table.map(row => this.tableRow(row.course, row.loc))}
+                {/*{names.map(name => <h1>name</h1>)}*/}
                 <div className="tableContainer">
                     <table>
                         <thead>
