@@ -1,52 +1,88 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            testing: 'hellow world'
-        }
+            title: 'Study Buddy',
+            course: '',
+            courseLocation: ''
+        };
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleCourse = this.handleCourse.bind(this)
+        this.handleCourseLocation = this.handleCourseLocation.bind(this)
     }
-  render () {
-    return (
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-              Edit <code>src/App.js</code> and save to reload. {this.state.testing}
-            </p>
-            <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-          </header>
-            <table>
-                <tr>
-                    <th>course</th>
-                    <th>location</th>
-                </tr>
-                <tr>
-                    <td>calc 2</td>
-                    <td>MC room 101</td>
-                </tr>
-                <tr>
-                    <td>cs 114</td>
-                    <td>DC room 202</td>
-                </tr>
-                <tr>
-                    <td>physics 101</td>
-                    <td>PHYs room 303</td>
-                </tr>
-            </table>
-        </div>
-    );
-  }
+
+    handleCourse(event) {
+        event.preventDefault();
+        this.setState({course: event.target.value})
+    }
+
+    handleCourseLocation(event) {
+        event.preventDefault();
+        this.setState({courseLocation: event.target.value})
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        const data = this.state;
+        console.log(data)
+    }
+
+    render () {
+        return (
+            <div className="App">
+                <h1>
+                    {this.state.title}
+                </h1>
+                <div className="tableContainer">
+                    <table>
+                        <tr>
+                            <th>course</th>
+                            <th>location</th>
+                        </tr>
+                        <tr>
+                            <td>calc 2</td>
+                            <td>MC room 101</td>
+                        </tr>
+                        <tr>
+                            <td>cs 114</td>
+                            <td>DC room 202</td>
+                        </tr>
+                        <tr>
+                            <td>physics 101</td>
+                            <td>PHYs room 303</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div className="formContainer">
+
+                    <br/>
+                    <form onSubmit={this.handleSubmit}>
+                        Add meetup
+                        <br/>
+                        <label>
+                            Course:
+                            <input type="text" name="course" value={this.state.course} onChange={this.handleCourse}/>
+                        </label>
+                        <label>
+                            Location:
+                            <input type="text" name="courseLocation" value={this.state.courseLocation} onChange={this.handleCourseLocation}/>
+                        </label>
+                        <input type="submit" value="Submit" />
+                    </form>
+
+                    <div>
+                        submitted: {this.state.course} and {this.state.courseLocation}
+                    </div>
+
+                </div>
+            </div>
+        );
+    }
 }
 
 export default App;
