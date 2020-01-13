@@ -28,8 +28,17 @@ class App extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const data = this.state;
-        console.log(data)
+        const course = this.state.course;
+        const courseLocation = this.state.courseLocation;
+        const newTable = this.state.table;
+        const newRow = {course: course, loc: courseLocation};
+        newTable.push({course, courseLocation});
+        console.log(typeof(newTable), newTable);
+
+        this.setState(prevState => ({
+            ...prevState,
+            table: newTable
+        }))
     }
 
     tableRow = (course, location) => {
@@ -41,14 +50,11 @@ class App extends React.Component {
     };
 
     render () {
-        // const names = ['Jake', 'Jon', 'Thruster'];
         return (
             <div className="App">
                 <h1>
                     {this.state.title}
                 </h1>
-                {this.state.table.map(row => this.tableRow(row.course, row.loc))}
-                {/*{names.map(name => <h1>name</h1>)}*/}
                 <div className="tableContainer">
                     <table>
                         <thead>
@@ -58,18 +64,7 @@ class App extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>calc 2</td>
-                                <td>MC room 101</td>
-                            </tr>
-                            <tr>
-                                <td>cs 114</td>
-                                <td>DC room 202</td>
-                            </tr>
-                            <tr>
-                                <td>physics 101</td>
-                                <td>PHYs room 303</td>
-                            </tr>
+                            {this.state.table.map(row => this.tableRow(row.course, row.loc))}
                         </tbody>
                     </table>
                 </div>
