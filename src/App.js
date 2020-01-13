@@ -28,12 +28,9 @@ class App extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const course = this.state.course;
-        const courseLocation = this.state.courseLocation;
         const newTable = this.state.table;
-        const newRow = {course: course, loc: courseLocation};
+        const newRow = {course: this.state.course, loc: this.state.courseLocation};
         newTable.push(newRow);
-        console.log(typeof(newTable), newTable);
 
         this.setState(prevState => ({
             ...prevState,
@@ -86,9 +83,10 @@ class App extends React.Component {
                         <input type="submit" value="Submit" />
                     </form>
 
-                    <div>
-                        submitted: {this.state.course} and {this.state.courseLocation}
-                    </div>
+                    {/*<div>*/}
+                    {/*    {this.state.course && this.state.courseLocation ?*/}
+                    {/*        <p>submitted {this.state.course} at {this.state.courseLocation} </p>  : null}*/}
+                    {/*</div>*/}
 
                 </div>
             </div>
