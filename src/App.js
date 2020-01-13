@@ -32,7 +32,7 @@ class App extends React.Component {
         const courseLocation = this.state.courseLocation;
         const newTable = this.state.table;
         const newRow = {course: course, loc: courseLocation};
-        newTable.push({course, courseLocation});
+        newTable.push(newRow);
         console.log(typeof(newTable), newTable);
 
         this.setState(prevState => ({
