@@ -34,7 +34,9 @@ class App extends React.Component {
 
         this.setState(prevState => ({
             ...prevState,
-            table: newTable
+            table: newTable,
+            course: '',
+            courseLocation: ''
         }));
         alert('submitted: course assignment ' + this.state.course + ' at location: ' + this.state.courseLocation)
     }
